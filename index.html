@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap"
         rel="stylesheet">
+    <script src="script.js"></script>
     <style>
         :root {
             --bg: #0b0b0f;
@@ -62,7 +63,7 @@
         /* Header */
         .container {
             width: min(1200px, 92%);
-            margin-inline: auto
+            margin-inline: auto;
         }
 
         header {
@@ -82,24 +83,161 @@
             padding: 14px 0;
         }
 
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80px;
+            width: 100%;
+            position: sticky;
+            top: 0;
+            background: transparent;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+        }
+
+        .navbar-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1600px;
+            padding: 0 2rem;
+        }
+
+        .navbar-logo {
+            display: inline-block;
+            width: 180px;
+            height: 120px;
+            background-image: url(PRIME\ Vision\ \(1\).png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+        }
+
+        .navbar-container .navbar-menu {
+            display: flex;
+            text-align: center;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .navbar-container .navbar-menu li a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 1.0rem;
+            font-weight: 500;
+            padding: 3px 20px;
+            border-radius: 20px;
+            border: 2px solid transparent;
+            transition: all 0.7s ease;
+            white-space: nowrap;
+        }
+
+        .navbar-container .navbar-menu li a:hover {
+            color: var(--text);
+            border-color: var(--stroke);
+            background: rgba(255, 255, 255, .03);
+        }
+
+        .navbar-toggle {
+            display: none;
+            background: transparent;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 880px) {
+            .navbar {
+                backdrop-filter: none;
+            }
+
+            .navbar-container .navbar-menu {
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.7rem !important;
+                position: absolute;
+                height: 100vh;
+                width: 250px;
+                top: 0;
+                right: 0;
+                padding: 5rem 1.5rem;
+                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+                backdrop-filter: blur(10px);
+            }
+
+            .navbar-container .navbar-menu.active {
+                display: flex;
+            }
+
+            .navbar-toggle {
+                display: block;
+                z-index: 999;
+            }
+
+            .navbar-toggle.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .navbar-toggle.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .navbar-toggle.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+        }
+
+        @media (max-width: 488px) {
+            .navbar-container {
+                padding: 0 1rem;
+            }
+
+            .navbar-logo {
+                font-size: 1.7rem;
+            }
+
+            .navbar-container .navbar-menu li a {
+                font-size: 1.2rem;
+                padding: 3px 15px;
+            }
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background: #ffffff;
+            transition: all 0.3s ease-in-out;
+        }
+
+
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 20px;
             font-weight: 800;
             letter-spacing: .5px
         }
 
         .logo-badge {
-            width: 56px;
-            height: 36px;
+            width: 150px;
+            height: 46px;
             border-radius: 12px;
             background: linear-gradient(135deg, var(--brand), var(--brand2));
             box-shadow: 0 8px 30px rgba(124, 92, 255, .35), inset 0 1px 0 rgb(255, 255, 255, .04);
             display: grid;
             place-items: center;
             font-weight: 900;
-            color: #0b0b0f
+            font-size: 16px;
+            padding: 0 12px;
+            color: #000000;
         }
 
         .nav ul {
@@ -157,8 +295,9 @@
 
         /* Hero */
         .hero {
+            background: url(pexels-tara-winstead-8386440.jpg);
             padding: 76px 0 40px;
-            position: relative
+            position: relative;
         }
 
         .hero-grid {
@@ -432,11 +571,10 @@
 </head>
 
 <body>
-    <header>
+    <!--<header>
         <div class="container nav">
             <a href="#" class="logo">
-                <span class="logo-badge">PV</span>
-                <span>PRIME VISION</span>
+                <span class="logo-badge">PRIME VISIONS</span>
             </a>
             <nav>
                 <ul>
@@ -449,7 +587,23 @@
             </nav>
             <a class="cta hire-btn" href="#contact">HIRE ME</a>
         </div>
-    </header>
+    </header>-->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo"></a>
+            <button class="navbar-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="navbar-menu">
+                <li><a href="#services" class="active">Services</a></li>
+                <li><a href="#cases">Case Studies</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+        </div>
+    </nav>
 
     <main>
         <!-- Hero -->
@@ -755,6 +909,24 @@
     "knowsAbout": ["Amazon PPC","Amazon SEO","eBay SEO","Listing Optimization","Account Health"]
   }
   </script>
+    <script>
+        const toggle = document.getElementById('mobile-menu');
+        const menu = document.querySelector('.navbar-menu');
+        const menuLinks = document.querySelectorAll('.navbar-menu li a');
+        //Toggle menu on hamburger click
+        toggle.addEventListener('click', () => {
+            toggle.classList.toggle('active');
+            menu.classList.toggle('active');
+        });
+        // Close menu on link click
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                toggle.classList.remove('active');
+                menu.classList.remove('active');
+            });
+        });
+    </script>
 </body>
+<script src="script.js"></script>
 
 </html>
